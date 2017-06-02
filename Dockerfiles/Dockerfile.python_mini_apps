@@ -1,0 +1,47 @@
+FROM ubuntu:trusty
+
+MAINTAINER Atsushi Ohta <ohta.atsushi.2c@kyoto-u.ac.jp> / Crop Evolution Lab. Kyoto University
+
+#——————————————
+
+# Update/Upgrade
+RUN apt-get update -y
+RUN apt-get upgrade -y
+
+# git, wget, etc.
+RUN apt-get install -y git
+RUN apt-get install -y wget
+RUN apt-get install -y build-essential
+RUN apt-get install -y unzip
+RUN apt-get clean
+
+RUN mkdir Applications
+WORKDIR /Applications
+
+#——————— Python ———————
+
+# Anaconda
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.2.11-Linux-x86_64.sh
+RUN bash Miniconda3-4.2.11-Linux-x86_64.sh -b
+RUN rm Miniconda3-4.2.11-Linux-x86_64.sh
+
+RUN root/miniconda3/bin/conda install --yes scipy pandas numpy
+RUN root/miniconda3/bin/conda install --yes matplotlib
+RUN root/miniconda3/bin/conda install --yes ipython-notebook
+
+# path to /root/miniconda3/bin/
+RUN echo export PATH=${PATH}:/root/miniconda3/bin/ >> /etc/bash.bashrc
+
+#——————————————
+
+RUN mkdir /root/data
+VOLUME ["/root/data"]
+WORKDIR /root/data
+
+# run ipython notebook server
+EXPOSE 9875
+CMD root/miniconda3/bin/ipython notebook --ip=0.0.0.0 --no-browser --port=9875
+
+# <<< Comments >>>
+# [Usage]
+# [Example]

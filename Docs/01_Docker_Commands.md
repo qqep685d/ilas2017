@@ -1,40 +1,49 @@
 # Dockerコマンド
-## Dockerイメージの探す・取得・確認・削除
-- Dockerhubにあるイメージを探す（`docker search`）  
-例：`docker search ilas2017`  
 
-- Dockerhubからイメージを取得する（`docker pull`）  
-例：`docker pull qqep685d/ilas2017`
+## 1. Dockerコンテナ・Dockerイメージ・Docker Hub
+### Dockerコンテナ
+　Dockerはコンテナと呼ばれるもので、「作成・削除したファイル・ディレクトリ」や「インストールしたソフトウェア」、「ソフトウェア間の関係」などの情報を保存している。
 
-- パソコン内にあるDockerfileからイメージを取得する（`docker build`）  
-例：Dockerfileがあるディレクトリで、`docker build -t ilas2017 .`
+### Dockerイメージ
+　Dockerイメージは、Dockerコンテナをまとめて配布・再利用できる形にしたもの。
+![Dockerイメージ図](../Images/docker2.png "イメージとコンテナ")
+### Docker Hub
+　Docker HubはDockerイメージを保存・配布しているインターネット上のサービスのこと。作成した環境（Dockerイメージ）は誰でも無料でDocker Hubに置くことができ（有料サービスもある）、他者（または自身）が作成した環境を自身のパソコンの仮想PCにダウンロードすることもできる。
+![Dockerイメージ図](../Images/docker1.png "イメージとコンテナ")
 
-- 取得したイメージを確認する（`docker images`）
+__ILASセミナーでは、バイオインフォマティクス関連のソフトウェア一式を準備した環境（Dockerイメージ）を利用します。そのイメージは、`qqep685d/ilas2017`という名前でDocker Hubに置いています。__
 
-- イメージを削除する（`docker rmi [イメージID]`）
 
-## Dockerコンテナを起動・ログイン・ログアウト・確認・削除
-- コンテナを起動＆ログインする（`docker run`）  
-例：`docker run -i -t qqep685d/ilas2017 /bin/bash`  
-例：`docker run --rm -v /[自身のパソコンの任意のディレクトリ]/:/root/data/  -i -t qqep685d/ilas2017 /bin/bash`  
-（--rmオプションで、ログアウト時に作業履歴を削除する）  
-（-vオプションで、自身のパソコンの任意ディレクトリとDockerの/root/data/ディレクトリを接続する; データのやりとりが可能になる）
+## 2. Dockerコマンド
 
-- コンテナを確認する（`docker ps -a`）
+### Dockerイメージの探す・取得・確認・削除
 
-- 停止中のコンテナを再開させる（`docker start [コンテナID]`）
+|動作|コマンド|例|備考|
+|:-|:-|:-|:-|
+|Docker Hubにあるイメージを探す|docker search|docker search ilas2017|-|
+|Docker Hubからイメージを取得する|docker pull|docker pull qqep685d/ilas2017|-|
+|パソコン内のDockerfileからイメージを取得する|docker build|docker build -t .|Dockerfileがあるディレクトリで実行するのが確実|
+|取得したイメージを確認する|docker images|docker images|-|
+|イメージを削除する|docker rmi|docker rmi qqep685d/ilas2017|-|
 
-- 起動中のコンテナにログインする（`docker attach [コンテナID]`）
 
-- 起動中のコンテナを停止させる（`docker stop [コンテナID]`）
+### Dockerコンテナを起動・ログイン・ログアウト・確認・削除
 
-- コンテナを削除する（`docker rm [コンテナID]`）
+|動作|コマンド|例|備考|
+|:-|:-|:-|:-|
+|イメージからコンテナを作成し、起動する|docker run|docker run --rm -v ${PWD}:${PWD} -i -t qqep685d/ilas2017 bash|-i -t: インタラクティブモードで起動（コンテナ内のシェルに入る）。-itと短縮可能。<br> --rm: コンテナ終了時に履歴を残さない。<br> -v: ホストPCの任意ディレクトリとコンテナ内のディレクトリを接続する。[使い方]-v /ホストディレクトリ/:/コンテナディレクトリ/）|
+|コンテナを確認する|docker ps|docker ps -a|コンテナIDを確認することができる。<br> -a: 停止中のコンテナを含めて表示する。-aがない場合、起動中のコンテナのみ表示。|
+|停止中のコンテナを起動（再開）させる|docker start|docker start [コンテナID]|-|
+|起動中のコンテナにログインする|docker attach|docker attach [コンテナID]|-|
+|起動中のコンテナを停止させる|docker stop|docker stop [コンテナID]|-|
+|コンテナを削除する|docker rm|docker rm [コンテナID]|-|
 
-## Dockerコンテナについて注意点
-- `docker run`で起動されるコンテナは、毎回異なるIDが付与される。
 
-- コンテナ内の作業はコンテナIDに紐付けされており、その作業はコンテナからログアウト後も一時保存された状態で残される。`docker ps -a`でコンテナの履歴を確認できる。
+### Dockerコンテナについて注意点
+- `docker run`は初期状態のコンテナが起動する。そのコンテナには毎回異なるIDが付与される。コンテナ内の作業はIDに紐付けされており、その作業はコンテナからログアウト後も一時保存された状態で残される。  
 
-- 履歴にあるコンテナ内に再度ログインするためには、`docker start [コンテナID]`（コンテナを起動）と`docker attach [コンテナID]`（コンテナにログイン）が必要。
+- `docker ps -a`でコンテナの履歴を確認できる。
 
-- 不要になったコンテナの履歴は、`docker rm [コンテナID]`で削除が可能。
+- 履歴のコンテナに再度ログインするには、`docker start [コンテナID]`（コンテナを起動）と`docker attach [コンテナID]`（コンテナにログイン）が必要。
+
+- 不要になったコンテナ履歴は、`docker rm [コンテナID]`で削除が可能。

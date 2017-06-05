@@ -39,6 +39,13 @@ __ILASセミナーでは、バイオインフォマティクス関連のソフ�
 |起動中のコンテナを停止させる|docker stop|docker stop [コンテナID]|-|
 |コンテナを削除する|docker rm|docker rm [コンテナID]|-|
 
+### ファイルをコピーする
+
+|動作|コマンド|例|備考|
+|:-|:-|:-|:-|
+|起動時にコンテナと自身のPCのディレクトリをつなぐ|docker run -v|docker run -it -v ${PWD}:${PWD} qqep685d/ilas2017|runコマンドの-vオプションを使用|
+|コンテナから自身のPCへのファイルコピー|docker cp|docker cp [コンテナID]:/home/guest.txt $PWD|-|
+|自身のPCからコンテナへのファイルコピー|docker cp|docker cp host.txt [コンテナID]:/home/|-|
 
 ### Dockerコンテナについて注意点
 - `docker run`は初期状態のコンテナが起動する。そのコンテナには毎回異なるIDが付与される。コンテナ内の作業はIDに紐付けされており、その作業はコンテナからログアウト後も一時保存された状態で残される。  

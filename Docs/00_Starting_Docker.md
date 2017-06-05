@@ -54,20 +54,25 @@ __ILASセミナーでは、バイオインフォマティクス関連のソフ�
 
 ## （ILASセミナー2017）バイオインフォマティクス環境のインストール＆起動
 ターミナル上で
-0. Docker Hub上のDockerイメージを探す。  
+1. Docker Hub上のDockerイメージを探す。  
 `docker search ilas2017`  
 
-0. Dockerイメージを入手する。  
+1. Dockerイメージを入手する。  
 `docker pull qqep685d/ilas2017`
 
-0. 入手したイメージよりDockerコンテナを動かす（起動とログイン）  
+1. 入手したイメージよりDockerコンテナを動かす（起動とログイン）  
 `docker run -i -t qqep685d/ilas2017 /bin/bash`
 
-0. Docker内のソフトウェアを使ってみる（例: bwa）。  
+1. Docker内のソフトウェアを使ってみる（例: bwa）。  
 `bwa`
 
-0. Dockerコンテナから出る（ログアウト）。  
+1. Dockerコンテナから出る（ログアウト）。  
 `exit`
+
+1. [Windowsの場合] Dockerマシンを終了する。  
+（Macの場合、このプロセスは不要です。）  
+`docker-machine stop`  
+
 
 ## ILASセミナー2017環境の内容
 　Dockerイメージ「qqep685d/ilas2017」には、以下のソフトウェアが含まれています。

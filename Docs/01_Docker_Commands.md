@@ -63,6 +63,8 @@ __ILASセミナーでは、バイオインフォマティクス関連のソフ�
 - [Docker入門](./00_Starting_Docker.md)
 - [Dockerコマンド](./01_Docker_Commands.md)
 - [Perlプログラミング基礎](./02_Intro_Perl.md)
+- [Pythonプログラミング on Jupyter Notebook (Windows版)](./03_1_Python_on_Jupyter_for_Windows.md)
+- [Pythonプログラミング on Jupyter Notebook (Mac版)](./03_2_Python_on_Jupyter_for_Mac.md)
 
 ## 補足
 - [なぜ仮想PCを構築するのか？](XX_Why_use_docker.md)

@@ -1,35 +1,1 @@
-FROM ubuntu:trusty
-
-MAINTAINER Atsushi OHTA <ohta.atsushi.2c@kyoto-u.ac.jp>
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y git wget build-essential unzip nano man language-pack-ja-base language-pack-ja ibus-mozc manpages-ja
-RUN apt-get clean
-
-#日本語環境設定
-RUN update-locale LANG=ja_JP.UTF-8 LANGUAGE=ja_JP:ja
-#環境変数設定
-ENV LANG ja_JP.UTF-8
-ENV LC_ALL ja_JP.UTF-8
-ENV LC_CTYPE ja_JP.UTF-8
-
-#miniconda3: Python3
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.2.12-Linux-x86_64.sh
-RUN bash Miniconda3-4.2.12-Linux-x86_64.sh -b
-#conda install
-RUN /root/miniconda3/bin/conda install --yes biopython=1.68 python=3.5
-RUN /root/miniconda3/bin/conda install --yes scipy cython numba pandas matplotlib seaborn ipython-notebook anaconda-client
-
-#R
-RUN apt-get install -y --no-install-recommends fonts-dejavu gfortran gcc && apt-get clean
-RUN /root/miniconda3/bin/conda config --system --add channels r
-RUN /root/miniconda3/bin/conda install --quiet --yes 'rpy2=2.8*' 'r-base=3.3.2' 'r-irkernel=0.7*' 'r-devtools=1.12*' 'r-rcurl=1.95*'
-RUN /root/miniconda3/bin/conda clean -tipsy
-
-# ipython notebook
-RUN mkdir /root/data
-WORKDIR /root/data
-EXPOSE 8080
-CMD ["/root/miniconda3/bin/jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--port=8080", "--allow-root"]
+FROM ubuntu:trustyMAINTAINER Atsushi OHTA <ohta.atsushi.2c@kyoto-u.ac.jp>ENV DEBIAN_FRONTEND noninteractiveRUN apt-get update && apt-get upgrade -yRUN apt-get install -y git wget build-essential unzip nano man language-pack-ja-base language-pack-ja ibus-mozc manpages-jaRUN apt-get clean#日本語環境設定RUN update-locale LANG=ja_JP.UTF-8 LANGUAGE=ja_JP:jaENV LANG ja_JP.UTF-8ENV LC_ALL ja_JP.UTF-8ENV LC_CTYPE ja_JP.UTF-8#miniconda3: Python3RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.3.21-Linux-x86_64.shRUN bash Miniconda3-4.3.21-Linux-x86_64.sh -b#conda installRUN /root/miniconda3/bin/conda install --yes python=3.5 biopython=1.68RUN /root/miniconda3/bin/conda install --yes scipy cython numba pandas matplotlib seaborn ipython-notebook anaconda-client#RRUN apt-get install -y --no-install-recommends fonts-dejavu gfortran gcc && apt-get cleanRUN /root/miniconda3/bin/conda config --system --add channels rRUN /root/miniconda3/bin/conda install --quiet --yes 'rpy2=2.8*' 'r-base=3.3.2' 'r-irkernel=0.7*' 'r-devtools=1.12*' 'r-rcurl=1.95*'RUN /root/miniconda3/bin/conda clean -tipsy# ipython notebookRUN mkdir /root/dataWORKDIR /root/dataEXPOSE 8080CMD ["/root/miniconda3/bin/jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--port=8080", "--allow-root"]

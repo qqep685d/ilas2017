@@ -39,6 +39,10 @@ __ILASセミナーでは、バイオインフォマティクス関連のソフ�
 |起動中のコンテナを停止させる|docker stop|docker stop [コンテナID]|-|
 |コンテナを削除する|docker rm|docker rm [コンテナID]|-|
 
+__すべてのコンテナ履歴を削除したい場合は次の2コマンドを実行する__  
+`docker stop $(docker ps -a -q)`  
+`docker rm $(docker ps -a -q)`
+
 ### ファイルをコピーする
 
 |動作|コマンド|例|備考|

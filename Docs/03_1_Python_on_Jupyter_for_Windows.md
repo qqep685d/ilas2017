@@ -69,7 +69,7 @@ plt.scatter(x,y)                # 散布図に表示する。
 - [Perlプログラミング基礎](./02_Intro_Perl.md)
 - [Pythonプログラミング on Jupyter Notebook (Windows版)](./03_1_Python_on_Jupyter_for_Windows.md)
 - [Pythonプログラミング on Jupyter Notebook (Mac版)](./03_2_Python_on_Jupyter_for_Mac.md)
-- [RNA-seq解析入門][./04_RNA-seq_analysis.md]
+- [RNA-seq解析入門](./04_RNA-seq_analysis.md)
 
 ## 補足
 - [なぜ仮想PCを構築するのか？](./XX_Why_use_docker.md)

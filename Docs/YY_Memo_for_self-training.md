@@ -57,7 +57,7 @@ https://github.com/qqep685d/ilas2017/blob/master/Docs/03_1_Python_on_Jupyter_for
 - Pythonプログラミング 実習データ  
 https://github.com/yu57th/Python_Lecture
 
-- RNA-seq解析入門
+- RNA-seq解析入門  
 https://github.com/qqep685d/ilas2017/blob/master/Docs/04_RNA-seq_analysis.md  
 
 - なぜ仮想PCを構築するのか？  

@@ -1,4 +1,4 @@
-# 自習のためのコマンド
+# （自習用メモ）解析環境の立ち上げ方法
 ## 0. 事前準備
 1. Docker Quick Terminalの起動
 1. デスクトップ上のILAS(ILASセミナー用のフォルダ名)に移動  
@@ -56,6 +56,9 @@ https://github.com/qqep685d/ilas2017/blob/master/Docs/03_1_Python_on_Jupyter_for
 
 - Pythonプログラミング 実習データ  
 https://github.com/yu57th/Python_Lecture
+
+- RNA-seq解析入門
+https://github.com/qqep685d/ilas2017/blob/master/Docs/04_RNA-seq_analysis.md  
 
 - なぜ仮想PCを構築するのか？  
 https://github.com/qqep685d/ilas2017/blob/master/Docs/XX_Why_use_docker.md

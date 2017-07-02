@@ -69,6 +69,8 @@ __すべてのコンテナ履歴を削除したい場合は次の2コマンド�
 - [Perlプログラミング基礎](./02_Intro_Perl.md)
 - [Pythonプログラミング on Jupyter Notebook (Windows版)](./03_1_Python_on_Jupyter_for_Windows.md)
 - [Pythonプログラミング on Jupyter Notebook (Mac版)](./03_2_Python_on_Jupyter_for_Mac.md)
+- [RNA-seq解析入門][./04_RNA-seq_analysis.md]
 
 ## 補足
-- [なぜ仮想PCを構築するのか？](XX_Why_use_docker.md)
+- [なぜ仮想PCを構築するのか？](./XX_Why_use_docker.md)
+- [（自習用メモ）解析環境の立ち上げ方法](./YY_Memo_for_self-training.md)
